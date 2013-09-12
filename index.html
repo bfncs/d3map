@@ -58,6 +58,18 @@ svg {
   fill: #fbb;
 }
 
+.state.active,
+.country.active {
+  fill: #bbf;
+}
+
+
+
+.state.active:hover,
+.country.active:hover {
+  fill: #aaf;
+}
+
 /* backgrond-images: 
  * https://gist.github.com/vitch/3226952
  */
@@ -128,7 +140,7 @@ svg {
       var centroid = path.centroid(d);
       x = centroid[0];
       y = centroid[1];
-      k = 3;
+      k = 2.6;
       centered = d;
     } else {
       x = width / 2;
