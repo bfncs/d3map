@@ -11,7 +11,7 @@ svg {
 }
 
 .background {
-  fill: none;
+  fill: #f2f8ff;
   pointer-events: all;
 }
 
@@ -85,7 +85,7 @@ svg {
     centered;
 
   var projection = d3.geo.albers()
-      .center([0, 50.0])
+      .center([0, 50.5])
       .rotate([-6.0, 0])
       .parallels([50, 60])
       .scale(3600)
@@ -106,7 +106,7 @@ svg {
 
   var g = svg.append("g");
 
-  d3.json("topo.json", function(error, data) {
+  d3.json("raw/topo.json", function(error, data) {
     console.log(data);
     
     /* draw countries */
