@@ -36,7 +36,7 @@ svg {
   fill: #d1dbbd;
 }
 
-.country-nld,
+.country-nl1,
 .country-bel {
   fill: #a8aaa3;
 }
@@ -101,7 +101,6 @@ svg {
   var g = svg.append("g");
 
   d3.json("raw/topo.json", function(error, data) {
-    console.log(data);
     
     /* draw countries */
     g.append("g")
@@ -127,9 +126,13 @@ svg {
   function clicked(d) {
     var x, y, k;
 
-    if (d && centered !== d
-      && ( !d.id
-        || (d.id === 'AUT' || d.id === 'CHE'))
+    if (d
+      && centered !== d
+      && (
+        d.id === 'AUT'
+        || d.id === 'CHE'
+        || (d.properties && d.properties.country)
+      )
     ) {
       var centroid = path.centroid(d);
       x = centroid[0];
