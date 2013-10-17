@@ -4,19 +4,39 @@
 cd ne_10m_admin_0_countries
 rm countries.json
 ./build-json.sh
+
+# Build countries TopoJSON
+rm countries.topo.json
+topojson \
+  --id-property sov_a3 \
+  -p name=NAME \
+  -p name \
+  -o countries.topo.json \
+  ./countries.json
 cd ..
+
 
 # Build states GeoJSON
 cd ne_10m_admin_1_states_provinces_shp
 rm states.json
 ./build-json.sh
+
+# Build states TopoJSON
+rm states.topo.json
+topojson \
+  --id-property postal \
+  -p name=NAME \
+  -p name \
+  -p country=sr_sov_a3 \
+  -p country \
+  -o states.topo.json \
+  ./states.json
 cd ..
 
 # Build TopoJSON with countries and states
 topojson \
-  --id-property su_a3 \
-  -p name=NAME \
   -p name \
+  -p country \
   -o topo.json \
-  ne_10m_admin_0_countries/countries.json \
-  ne_10m_admin_1_states_provinces_shp/states.json
+  ne_10m_admin_0_countries/countries.topo.json \
+  ne_10m_admin_1_states_provinces_shp/states.topo.json
