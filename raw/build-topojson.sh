@@ -11,6 +11,8 @@ topojson \
   --id-property sov_a3 \
   -p name=NAME \
   -p name \
+  -q 1e5 \
+  -s 0.000000025 \
   -o countries.topo.json \
   ./countries.json
 cd ..
@@ -29,6 +31,8 @@ topojson \
   -p name \
   -p country=sr_sov_a3 \
   -p country \
+  -q 1e5 \
+  -s 0.000000025 \
   -o states.topo.json \
   ./states.json
 cd ..
