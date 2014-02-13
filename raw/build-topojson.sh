@@ -37,10 +37,28 @@ topojson \
   ./states.json
 cd ..
 
+# Build lakes GeoJSON
+cd ne_10m_lakes
+rm lakes.json
+./build-json.sh
+
+# Build lakes TopoJSON
+rm lakes.topo.json
+topojson \
+  --id-property name \
+  -p name=NAME \
+  -p name \
+  -q 1e5 \
+  -s 0.000000025 \
+  -o lakes.topo.json \
+  ./lakes.json
+cd ..
+
 # Build TopoJSON with countries and states
 topojson \
   -p name \
   -p country \
   -o topo.json \
   ne_10m_admin_0_countries/countries.topo.json \
-  ne_10m_admin_1_states_provinces_shp/states.topo.json
+  ne_10m_admin_1_states_provinces_shp/states.topo.json \
+  ne_10m_lakes/lakes.topo.json

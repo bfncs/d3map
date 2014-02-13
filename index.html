@@ -10,7 +10,8 @@ svg {
   margin: 2em auto;
 }
 
-.background {
+.background,
+.lake {
   fill: #c3e9fb;
   pointer-events: all;
 }
@@ -121,6 +122,15 @@ svg {
       .attr("class", function(d) { return "state"; })
       .attr("d", path)
       .on("click", clicked);
+  
+    /* draw lakes */
+    g.append("g")
+      .attr("id", "lakes")
+      .selectAll(".lake")
+      .data(topojson.feature(data,data.objects.lakes).features)
+      .enter().append("path")
+      .attr("class", function(d) { return "lake"; })
+      .attr("d", path);
   });
 
   function clicked(d) {
